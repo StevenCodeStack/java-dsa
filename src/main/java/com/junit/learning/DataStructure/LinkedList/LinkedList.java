@@ -133,12 +133,53 @@ public class LinkedList {
 
     public ListNode getMid(){
         ListNode slow = head;
-        ListNode fast = head;
+        ListNode fast = head.next;
         while(fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
         return slow;
+    }
+
+    public void mergeSort() {
+        head = mergeSortRec(head);
+    }
+
+    public ListNode mergeSortRec(ListNode head) {
+        if(head == null || head.next == null) return head;
+
+        ListNode middle = getMidMerge(head);
+        ListNode middleNext = middle.next;
+        middle.next = null;
+
+        ListNode left = mergeSortRec(head);
+        ListNode right = mergeSortRec(middleNext);
+
+        return merge(left,right);
+    }
+
+    public ListNode merge(ListNode left, ListNode right) {
+        if(left == null) return right;
+        if(right == null) return left;
+
+        if(left.data > right.data) {
+            right.next = merge(left, right.next);
+            return right;
+        } else {
+            left.next = merge(left.next, right);
+            return left;
+        }
+    }
+
+    private ListNode getMidMerge(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while(fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+
     }
     
     public void show(){

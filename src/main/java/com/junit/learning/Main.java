@@ -14,14 +14,15 @@ public class Main {
         ListNode listNode4 = new ListNode(4);
         ListNode listNode5 = new ListNode(5);
 
-        list.insert(listNode1);
-        list.insert(listNode2);
-        list.insert(listNode3);
-        list.insert(listNode4);
         list.insert(listNode5);
+        list.insert(listNode4);
+        list.insert(listNode3);
+        list.insert(listNode2);
+        list.insert(listNode1);
 
-        System.out.println(list.getMid());
-
+        list.show();
+        list.mergeSort();
+        System.out.println();
         list.show();
     }
 }
